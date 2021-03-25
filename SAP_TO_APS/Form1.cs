@@ -140,7 +140,7 @@ namespace SAP_TO_APS
         {
             conn_open2();
             sql1 = "SELECT 訂單,COUNT(儲格分類) AS 應領筆數,儲格分類 FROM 備料明細 left join ZWODETAIL on 生產儲位=STORLOC_BIN WHERE Convert(varchar(100),上傳日期,23)=Convert(varchar(100),GETDATE(),23) and Convert(varchar(100),上傳日期, 108)>'15:59:00'" +
-                "and (STORLOC_BIN IS null and 生產儲位 not like 'S%' and 生產儲位 not like 'T%' or (訂單 like '%Q' OR 訂單 like 'A%'or 訂單 like '%Z1' or 訂單 like '%ZZ') AND (生產儲位 NOT LIKE '%5F' AND 生產儲位 NOT LIKE'%6F' AND 生產儲位 NOT LIKE '%7F' and 生產儲位 not like 'Z1')) and 訂單 in ('THK006019RB','THK006020RB') GROUP BY 訂單,儲格分類";
+                "and (STORLOC_BIN IS null and 生產儲位 not like 'S%' and 生產儲位 not like 'T%' or (訂單 like '%Q' OR 訂單 like 'A%'or 訂單 like '%Z1' or 訂單 like '%ZZ') AND (生產儲位 NOT LIKE '%5F' AND 生產儲位 NOT LIKE'%6F' AND 生產儲位 NOT LIKE '%7F' and 生產儲位 not like 'Z1')) GROUP BY 訂單,儲格分類";
             //sql1 = "INSERT saveloc_State (訂單,儲格,應領筆數,儲格分類)" +
             //"SELECT 訂單,'',COUNT(儲格分類) AS 應領筆數,儲格分類 FROM 備料明細 WHERE (生產儲位 not in(" + STORLOC_BIN_select() + ") or (訂單 like '%Q%' or 訂單 like '%R%')) and Convert(varchar(100),上傳日期,23)=Convert(varchar(100),GETDATE(),23) GROUP BY 訂單,儲格分類";
             OleDbDataAdapter adp1 = new OleDbDataAdapter(sql1, cn);
