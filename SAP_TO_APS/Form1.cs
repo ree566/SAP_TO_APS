@@ -93,25 +93,23 @@ namespace SAP_TO_APS
 
                 table.CurrentIndex = i;  //當前內表的索引行
 
-                string SHKZG = table.GetString("SHKZG");
-                string AUFNR = table.GetString("AUFNR");
-                string MATNR = table.GetString("MATNR");
-                string LGORT = table.GetString("LGORT");
-                double BDMNG = table.GetDouble("BDMNG");
-                string MATKL = table.GetString("EKGRP");
-                string SCHGT = table.GetString("SCHGT");
-                string DUMPS = table.GetString("DUMPS");
-                double ENMNG = table.GetDouble("ENMNG");
-                string ALPGR = table.GetString("ALPGR");
-                string STORLOC_BIN = table.GetString("STORLOC_BIN");
-                string GSTRP = table.GetString("GSTRP");
+                string SHKZG = table.GetString("SHKZG"); string AUFNR = table.GetString("AUFNR");
+                double BDMNG = table.GetDouble("BDMNG"); double ENMNG = table.GetDouble("ENMNG"); // Int32 modify to double by Apple.Chen 20190312
+                string POSNR = table.GetString("POSNR"); string BWART = table.GetString("BWART"); // Add POSNR & BWART by Apple.Chen 20190912
+                string MATNR = table.GetString("MATNR"); string LGORT = table.GetString("LGORT"); string MATKL = table.GetString("EKGRP");
+                string SCHGT = table.GetString("SCHGT"); string DUMPS = table.GetString("DUMPS"); string ALPGR = table.GetString("ALPGR");
+                string RSNUM = table.GetString("RSNUM"); // Add RSNUM by Apple.Chen 20210324
+                string STORLOC_BIN = table.GetString("STORLOC_BIN"); string GSTRP = table.GetString("GSTRP");
 
                 if (SCHGT != "X" & DUMPS != "X" & (BDMNG - ENMNG) != 0 & SHKZG == "H")
                 {
 
-                    sql1 = "Insert into 備料明細(訂單,需求溯源,物料,SLoc,生產儲位,狀態,需求日期,需求數量,領料數量,採購群組,負責人,工位,上傳日期,儲格,缺料數量,儲格分類,物管,UnitsInStock" +
-                      ") values ('" + AUFNR + "','" + MATN + "','" + MATNR.TrimStart('0') + "','" + LGORT + "','" + STORLOC_BIN + "','REL','" + GSTRP + "','" + BDMNG + "','" + ENMNG + "','" + MATKL + "'," +
-                       "'','',Convert(varchar(100),GETDATE(), 120),'','0','','','');";
+                    sql1 = "Insert into 備料明細(訂單,需求溯源,物料,SLoc,生產儲位,狀態,需求日期,需求數量,領料數量,採購群組,負責人,工位,上傳日期,儲格,缺料數量,儲格分類,物管,UnitsInStock,POSNR,RSNUM" +
+                            ") values ('" + AUFNR + "','" + MATN + "','" + MATNR.TrimStart('0') + "','" + LGORT + "','" + STORLOC_BIN + "','REL','" + GSTRP + "','" + BDMNG + "','" + ENMNG + "','" + MATKL + "'," +
+                            "'','',Convert(varchar(100),GETDATE(), 120),'','0','','','','" + POSNR + "','" + RSNUM + "');";//add POSNR by Apple.Chen at 20210205 & Add RSNUM & BWART by Apple.Chen at 20210324
+
+
+
                     conn_open2();
 
 
@@ -332,6 +330,11 @@ namespace SAP_TO_APS
             //執行資料庫指令OleDbCommand 
             objCmd.ExecuteNonQuery();
             cn.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
