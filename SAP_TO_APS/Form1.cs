@@ -104,9 +104,9 @@ namespace SAP_TO_APS
                 if (SCHGT != "X" & DUMPS != "X" & (BDMNG - ENMNG) != 0 & SHKZG == "H")
                 {
 
-                    sql1 = "Insert into 備料明細(訂單,需求溯源,物料,SLoc,生產儲位,狀態,需求日期,需求數量,領料數量,採購群組,負責人,工位,上傳日期,儲格,缺料數量,儲格分類,物管,UnitsInStock,POSNR,RSNUM" +
+                    sql1 = "Insert into 備料明細(訂單,需求溯源,物料,SLoc,生產儲位,狀態,需求日期,需求數量,領料數量,採購群組,負責人,工位,上傳日期,儲格,缺料數量,儲格分類,物管,UnitsInStock,POSNR,RSNUM,BWART" +
                             ") values ('" + AUFNR + "','" + MATN + "','" + MATNR.TrimStart('0') + "','" + LGORT + "','" + STORLOC_BIN + "','REL','" + GSTRP + "','" + BDMNG + "','" + ENMNG + "','" + MATKL + "'," +
-                            "'','',Convert(varchar(100),GETDATE(), 120),'','0','','','','" + POSNR + "','" + RSNUM + "');";//add POSNR by Apple.Chen at 20210205 & Add RSNUM & BWART by Apple.Chen at 20210324
+                            "'','',Convert(varchar(100),GETDATE(), 120),'','0','','','','" + POSNR + "','" + RSNUM + "', '"+ BWART + "');";//add POSNR by Apple.Chen at 20210205 & Add RSNUM & BWART by Apple.Chen at 20210324
 
 
 
